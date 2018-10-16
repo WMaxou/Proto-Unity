@@ -45,7 +45,6 @@ public class GroupManager : MonoBehaviour
         if (num >= groups[groupID - 1].characters.Count)
             return;
 
-        print("asdasd");
         Group current = groups[groupID - 1];
 
         List<Character> newCharacters = new List<Character>();
@@ -59,7 +58,8 @@ public class GroupManager : MonoBehaviour
             ++removeIt;
         }
 
-        Color color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+        Color color = new Color(Random.Range(0.1f, 1f), Random.Range(0.1f, 1f), Random.Range(0.1f, 1f));
+        print(color);
         Group group = new Group(newCharacters, stopDistance, current.pathId, color);
         groups.Add(group);
     }

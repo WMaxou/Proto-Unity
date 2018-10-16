@@ -28,7 +28,6 @@ public class PathManager : MonoBehaviour
             return null;
         }
 
-        Random rand;
         int i = Random.Range(0, paths[id].childCount);
         return paths[id].GetChild(i);
     }

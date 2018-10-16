@@ -13,4 +13,12 @@ public class MovingObstacle : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Character"))
+        {
+            Destroy(other.gameObject);
+        }
+    }
 }

@@ -34,7 +34,7 @@ public class InputFieldManager : MonoBehaviour
         if (int.TryParse(text.Substring(i + 2, 1), out numToSplit) == false)
             return;
 
-        if (func == "Split")
+        if (func == "Split" || func == "split")
             GroupManager.Instance.Split(groupid, numToSplit);
     }
 }

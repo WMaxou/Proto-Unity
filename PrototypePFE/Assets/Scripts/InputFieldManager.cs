@@ -21,6 +21,9 @@ public class InputFieldManager : MonoBehaviour
     public void EndInput()
     {
         string text = inputfield.text;
+        if (string.IsNullOrEmpty(text))
+            return;
+
         int i = text.IndexOf(':');
         string func = inputfield.text.Substring(0, i);
         int groupid;

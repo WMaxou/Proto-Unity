@@ -59,7 +59,8 @@ public class GroupManager : MonoBehaviour
             ++removeIt;
         }
 
-        Group group = new Group(newCharacters, stopDistance, current.pathId, Color.red);
+        Color color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+        Group group = new Group(newCharacters, stopDistance, current.pathId, color);
         groups.Add(group);
     }
 }

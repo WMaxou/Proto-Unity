@@ -59,8 +59,13 @@ public class GroupManager : MonoBehaviour
         }
 
         Color color = new Color(Random.Range(0.1f, 1f), Random.Range(0.1f, 1f), Random.Range(0.1f, 1f));
-        print(color);
         Group group = new Group(newCharacters, stopDistance, current.pathId, color);
         groups.Add(group);
+    }
+
+    public void removeGroup(Group toremove)
+    {
+        groups.Remove(toremove);
+        toremove = null;
     }
 }

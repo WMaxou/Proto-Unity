@@ -6,10 +6,12 @@ using Valve.VR;
 
 public class ControllerVR : MonoBehaviour
 {
+    private bool teleportPressed;
     public SteamVR_Input_Sources source;
 
     IGrabeable collidingObject;
     IGrabeable objectInHand;
+    IStopeable stopedObject;
 
     public Vector3 Velocity { get
         {
@@ -45,6 +47,15 @@ public class ControllerVR : MonoBehaviour
 
     private void Update()
     {
+        if (SteamVR_Input._default.inActions.Teleport.GetStateDown(source))
+        {
+            teleportPressed = true;
+        }
+        if (SteamVR_Input._default.inActions.Teleport.GetStateUp(source))
+        {
+            teleportPressed = false;
+        }
+
         if (SteamVR_Input._default.inActions.GrabPinch.GetStateDown(source))
         {
             if (collidingObject != null)
@@ -66,17 +77,34 @@ public class ControllerVR : MonoBehaviour
     public void OnTriggerStay(Collider other)
     {
         SetCollidingObject(other);
+        StopObject(other);
     }
 
-    //public void OnTriggerExit(Collider other)
-    //{
-    //    if (collidingObject == null)
-    //    {
-    //        return;
-    //    }
+    public void OnTriggerExit(Collider other)
+    {
+        if (stopedObject == null)
+            return;
 
-    //    collidingObject = null;
-    //}
+        IStopeable obj = other.GetComponent<IStopeable>();
+        if (obj != null)
+        {
+            obj.StartMove();
+            stopedObject = null;
+        }
+    }
+
+    private void StopObject(Collider other)
+    {
+        if (teleportPressed == false || stopedObject != null)
+            return;
+
+        IStopeable obj = other.GetComponent<IStopeable>();
+        if (obj != null)
+        {
+            obj.StopMove();
+            stopedObject = obj;
+        }
+    }
 
     private void SetCollidingObject(Collider col)
     {

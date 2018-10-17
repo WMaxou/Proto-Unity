@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class Group
 {
-    private Transform destination;
+    public Transform destination;
     public int pathId;
     private bool finshlevel;
 
@@ -20,6 +21,7 @@ public class Group
         {
             character.navmesh.stoppingDistance = stopDist;
             character.GetComponent<MeshRenderer>().material.color = color;
+            character.@group = this;
         }
         UpdatePath();
     }
@@ -28,6 +30,7 @@ public class Group
     {
         if (finshlevel)
         {
+            SceneManager.LoadScene(0);
             return;
         }
 
@@ -35,7 +38,15 @@ public class Group
             UpdatePath();
     }
 
-    void UpdatePath()
+    public void RemoveCharacter(Character toremove)
+    {
+        characters.Remove(toremove);
+
+        if (characters.Count == 0)
+            GroupManager.Instance.removeGroup(this);
+    }
+
+    public void UpdatePath()
     {
         destination = PathManager.Instance.GetPath(pathId, ref finshlevel);
         ++pathId;

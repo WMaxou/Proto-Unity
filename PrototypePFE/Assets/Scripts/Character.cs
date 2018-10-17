@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class Character : MonoBehaviour
 {
+    public Group group;
     public NavMeshAgent navmesh;
 
     private void Awake()
@@ -35,5 +36,11 @@ public class Character : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void Delete()
+    {
+        group.RemoveCharacter(this);
+        Destroy(gameObject);
     }
 }

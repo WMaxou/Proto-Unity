@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 [System.Serializable]
 public class Group
 {
+    private GameObject cube;
+
     public Transform destination;
     public int pathId;
     private bool finshlevel;
@@ -14,6 +16,8 @@ public class Group
 
     public Group(List<Character> _characters, float stopDist, int _pathId, Color color)
     {
+        cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        cube.GetComponent<MeshRenderer>().material.color = color;
         characters = _characters;
         pathId = _pathId;
 
@@ -36,6 +40,12 @@ public class Group
 
         if (IsArrived())
             UpdatePath();
+
+        if (destination != null)
+        {
+            cube.transform.position = destination.position;
+            cube.transform.Rotate(Vector3.up, 30 * Time.deltaTime);
+        }
     }
 
     public void RemoveCharacter(Character toremove)
@@ -44,6 +54,15 @@ public class Group
 
         if (characters.Count == 0)
             GroupManager.Instance.removeGroup(this);
+    }
+
+    public void SetDesination(Transform _destination)
+    {
+        destination = _destination;
+        foreach (Character character in characters)
+        {
+            character.navmesh.destination = destination.position;
+        }
     }
 
     public void UpdatePath()

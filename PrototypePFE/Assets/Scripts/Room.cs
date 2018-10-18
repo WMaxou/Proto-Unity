@@ -5,10 +5,8 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     private BoxCollider boxCollider;
-    private List<Group> groups;
     private void Awake()
     {
-        groups = new List<Group>();
         boxCollider= gameObject.AddComponent<BoxCollider>();
         boxCollider.isTrigger = true;
         boxCollider.size = new Vector3(1, 15, 1);
@@ -22,11 +20,7 @@ public class Room : MonoBehaviour
             if (charac.@group.destination == transform)
                 return;
 
-            if (groups.Contains(charac.@group))
-                return;
-
-            charac.@group.UpdatePath();
-            groups.Add(charac.@group);
+            charac.@group.SetDesination(transform);
         }
     }
 }

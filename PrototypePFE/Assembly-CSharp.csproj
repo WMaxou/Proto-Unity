@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Character.cs" />
     <Compile Include="Assets\Scripts\ControllerVR.cs" />
+    <Compile Include="Assets\Scripts\Fragment.cs" />
     <Compile Include="Assets\Scripts\Group.cs" />
     <Compile Include="Assets\Scripts\GroupManager.cs" />
     <Compile Include="Assets\Scripts\InputFieldManager.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Assets\Scripts\Obstacle.cs" />
     <Compile Include="Assets\Scripts\PathManager.cs" />
     <Compile Include="Assets\Scripts\Room.cs" />
+    <Compile Include="Assets\Scripts\Wall.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_TestThrow.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_TestTrackedCamera.cs" />

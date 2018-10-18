@@ -47,6 +47,12 @@ public class ControllerVR : MonoBehaviour
 
     private void Update()
     {
+        if (source == SteamVR_Input_Sources.RightHand)
+        {
+            print(teleportPressed);
+            print(stopedObject);
+        }
+
         if (SteamVR_Input._default.inActions.Teleport.GetStateDown(source))
         {
             teleportPressed = true;
@@ -55,7 +61,10 @@ public class ControllerVR : MonoBehaviour
         {
             teleportPressed = false;
             if (stopedObject != null)
+            {
                 stopedObject.StartMove();
+                stopedObject = null;
+            }
         }
 
         if (SteamVR_Input._default.inActions.GrabPinch.GetStateDown(source))
@@ -74,6 +83,7 @@ public class ControllerVR : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         SetCollidingObject(other);
+        StopObject(other);
     }
 
     public void OnTriggerStay(Collider other)
@@ -83,6 +93,24 @@ public class ControllerVR : MonoBehaviour
     }
 
     public void OnTriggerExit(Collider other)
+    {
+        ExitStoppeableObject(other);
+        ExitGrabeableObject(other);
+    }
+
+    void ExitGrabeableObject(Collider other)
+    {
+        if (collidingObject == null)
+            return;
+
+        IGrabeable obj = other.GetComponent<IGrabeable>();
+        if (obj != null)
+        {
+            collidingObject = null;
+        }
+    }
+
+    void ExitStoppeableObject(Collider other)
     {
         if (stopedObject == null)
             return;

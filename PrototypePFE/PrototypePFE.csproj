@@ -308,10 +308,13 @@
     <Compile Include="Assets\Scripts\Fragment.cs" />
     <Compile Include="Assets\Scripts\Group.cs" />
     <Compile Include="Assets\Scripts\GroupManager.cs" />
-    <Compile Include="Assets\Scripts\IGrabeable.cs" />
     <Compile Include="Assets\Scripts\InputFieldManager.cs" />
+    <Compile Include="Assets\Scripts\Interfaceable\IGrabeable.cs" />
+    <Compile Include="Assets\Scripts\Interfaceable\IStopeable.cs" />
+    <Compile Include="Assets\Scripts\MovingObstacle.cs" />
     <Compile Include="Assets\Scripts\Obstacle.cs" />
     <Compile Include="Assets\Scripts\PathManager.cs" />
+    <Compile Include="Assets\Scripts\Room.cs" />
     <Compile Include="Assets\Scripts\Wall.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_TestThrow.cs" />

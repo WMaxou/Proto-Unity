@@ -8,6 +8,9 @@ public class Wall : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.CompareTag("Character"))
+            return;
+
         Instantiate(destructibleWallPrefab, transform.position, transform.rotation);
         Destroy(gameObject);
     }

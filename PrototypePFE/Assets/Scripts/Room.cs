@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
+    public int id;
     private BoxCollider boxCollider;
     private void Awake()
     {
@@ -20,7 +21,8 @@ public class Room : MonoBehaviour
             if (charac.@group.destination == transform)
                 return;
 
-            charac.@group.SetDesination(transform);
+            if (id == charac.@group.pathId - 1)
+                charac.@group.SetDesination(transform);
         }
     }
 }

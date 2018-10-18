@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class InputFieldManager : MonoBehaviour
@@ -13,9 +14,11 @@ public class InputFieldManager : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
-	}
+	void Update ()
+	{
+		if (Input.GetKeyDown(KeyCode.RightArrow))
+		    SceneManager.LoadScene(0);
+    }
 
 
     public void EndInput()

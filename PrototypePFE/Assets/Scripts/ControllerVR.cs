@@ -54,6 +54,8 @@ public class ControllerVR : MonoBehaviour
         if (SteamVR_Input._default.inActions.Teleport.GetStateUp(source))
         {
             teleportPressed = false;
+            if (stopedObject != null)
+                stopedObject.StartMove();
         }
 
         if (SteamVR_Input._default.inActions.GrabPinch.GetStateDown(source))
